@@ -1,0 +1,223 @@
+Number of players: 4
+Maintenance: True
+
+player: Kris
+money: 13380
+crystals: 51
+
+player: And
+money: 11020
+crystals: 53
+
+player: Esz
+money: 14200
+crystals: 53
+
+player: No
+money: 14960
+crystals: 55
+
+
+All planets:
+
+planet: Atlantis 8+
+p_owner_name: Kris
+space_factory: False
+
+planet: Andromeda
+p_owner_name: Kris
+space_factory: True
+
+planet: Trochoid
+p_owner_name: Kris
+space_factory: False
+
+planet: Centaur 624
+p_owner_name: Kris
+space_factory: False
+
+planet: Mars
+p_owner_name: And
+space_factory: True
+
+planet: Earth
+p_owner_name: And
+space_factory: False
+
+planet: Europa
+p_owner_name: And
+space_factory: False
+
+planet: Coruscant
+p_owner_name: Esz
+space_factory: False
+
+planet: Bobotov Kuk
+p_owner_name: Esz
+space_factory: False
+
+planet: Blurr Krat 2
+p_owner_name: Esz
+space_factory: True
+
+planet: Razvrsje
+p_owner_name: Esz
+space_factory: False
+
+planet: Wadoh
+p_owner_name: No
+space_factory: False
+
+planet: Arcus Tendinis
+p_owner_name: No
+space_factory: False
+
+planet: Alpha Centauri
+p_owner_name: No
+space_factory: False
+
+planet: Cepheus Hydra
+p_owner_name: No
+space_factory: True
+
+planet: Draco Major
+p_owner_name: No
+space_factory: False
+
+
+All ships:
+
+ship: star destroyer
+s_owner_name: Kris
+position: 3 7
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: Kris
+position: 1 6
+already_travelled: False
+
+ship: transport
+s_owner_name: Kris
+position: 7 6
+already_travelled: True
+
+ship: transport
+s_owner_name: Kris
+position: 6 5
+already_travelled: True
+
+ship: fighter
+s_owner_name: Kris
+position: 5 6
+already_travelled: True
+
+ship: fighter
+s_owner_name: Kris
+position: 6 7
+already_travelled: True
+
+ship: fighter
+s_owner_name: Kris
+position: 5 5
+already_travelled: True
+
+ship: star destroyer
+s_owner_name: And
+position: 1 0
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: And
+position: 2 2
+already_travelled: False
+
+ship: fighter
+s_owner_name: And
+position: 6 2
+already_travelled: True
+
+ship: fighter
+s_owner_name: And
+position: 5 3
+already_travelled: True
+
+ship: fighter
+s_owner_name: And
+position: 5 2
+already_travelled: True
+
+ship: fighter
+s_owner_name: And
+position: 6 1
+already_travelled: True
+
+ship: star destroyer
+s_owner_name: Esz
+position: 12 4
+already_travelled: True
+
+ship: star destroyer
+s_owner_name: Esz
+position: 13 8
+already_travelled: False
+
+ship: fighter
+s_owner_name: Esz
+position: 9 5
+already_travelled: True
+
+ship: fighter
+s_owner_name: Esz
+position: 10 4
+already_travelled: True
+
+ship: fighter
+s_owner_name: Esz
+position: 10 6
+already_travelled: True
+
+ship: transport
+s_owner_name: Esz
+position: 10 5
+already_travelled: True
+
+ship: star destroyer
+s_owner_name: No
+position: 11 1
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: No
+position: 14 0
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: No
+position: 13 0
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: No
+position: 12 0
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: No
+position: 11 0
+already_travelled: False
+
+ship: star destroyer
+s_owner_name: No
+position: 9 1
+already_travelled: False
+
+ship: fighter
+s_owner_name: No
+position: 10 2
+already_travelled: False
+
+ship: transport
+s_owner_name: No
+position: 10 1
+already_travelled: False

@@ -1,0 +1,49 @@
+NEW FEATURES:
+
+2.2 fixed bug: when build space factory is hit but there is already space factory there, the money is subtracted again!
+
+2.2 price inflation, ship mainteneance added
+
+2.2 save and load game added
+
+2.2 special factory and marketplace added
+
+2.1 added sound effects and music
+
+2.1 it is allowed to move your ship to a position, where there is already another ship. When a ship moves to such a position, it detects collision and moves slightly downwards to avoid it. When after a move, no collision is detected, the ship moves slightly upwards until it is at its normal position. A ship may not enter battle when it is slightly shifted downwards.
+
+2.1 WARNING! when moving to a planet where there is already an enemy ship, you will attack the enemy ship. but if you win, you don't capture the enemy planet! you have to move out of the planet and back again the capture it.
+
+
+
+QUESTIONS:
+
+would it be better to add more ship types? it would make the role of luck smaller, but it would make the game less understandable for newbie players
+
+would it be better to add marketplace and special ship factory? it would make the game more versatile, but it also less understandable for newbie players
+
+
+
+THINGS TO DO:
+
+add a self destruction key for ships
+
+bug: when hitting load game button for the second time in a row, execution stops. this is due to the fact that play.py only has an if statement for self.want_to_reload, not a while loop. this cannot be solved easily, as a want_to_reload variable that survives the death of the pygame window would be needed to be kept in the load game button, but event the load game button does not stay the same when it is hit, as when the load game button is hit, the new gameboard object is created and that creates a new load game button for itself
+
+bug: when a buy sg. button is hit before a new round button was ever hit once, program crashes
+
+adjust volumes of each music and sound effect
+
+marketplace in the centre of the map, if you control it, you can convert money and crystals
+
+make buttons and window smaller, so that it doesn't go out of the screen
+
+no console output, round summary on GUI???
+
+different maps according to different excel inputs
+
+add death star to possible ships
+
+add super space factory on the sides of the map. if you control it, you can buy special ships
+
+a ship that has a freeze ability: when clicked on an enemy ship, itt will freeze it.
