@@ -37,9 +37,9 @@ and so on. After all players have done their stuff, hit the "New round" button, 
 
 BATTLE MECHANISMS:
 
+ask me if you are interested...
 
 MANAGING YOUR MONEY:
 
 
 BASIC STRATEGICAL ELEMENTS:
-
