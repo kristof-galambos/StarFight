@@ -38,21 +38,30 @@ class New_round_button(My_button):
         
         
     def command(self):
+        self.master.messages = ['NEW ROUND!']
         print('\nNEW ROUND!')
         self.calculate_prices()
         print('\nPRICES:')
+        self.master.messages.append('PRICES: ')
         print('STAR DESTROYER:', self.price_star_destroyer)
+        self.master.messages.append('STAR DESTROYER: ' + str(self.price_star_destroyer))
         print('FIGHTER:', self.price_fighter)
+        self.master.messages.append('FIGHTER: ' + str(self.price_fighter))
         print('TRANSPORT:', self.price_transport)
-        print('SPACE FACTORY:', self.SPACE_FACTORY_PRICE[0], 'money,', self.SPACE_FACTORY_PRICE[1], 'crystals')
+        self.master.messages.append('TRANSPORT: ' + str(self.price_transport))
+        print('SPACE FACTORY:', self.SPACE_FACTORY_PRICE[0], 'money, ', self.SPACE_FACTORY_PRICE[1], 'crystals')
+        self.master.messages.append('SPACE FACTORY: ' + str(self.SPACE_FACTORY_PRICE[0]) + 'money,' + str(self.SPACE_FACTORY_PRICE[1]) + 'crystals')
+        self.master.messages.append('PLAYERS:')
         for player in self.master.players:
             player.update_total_income()
             player.add_total_income()
             if self.want_maintenance:
                 player.subtract_maintenance()
             print('\n'+player.name)
+            self.master.messages.append(player.name)
             print('money:', player.money)
             print('crystals:', player.crystals)
+            self.master.messages.append('money: ' + str(player.money) + ', crystals: ' + str(player.crystals))
             print('money income:', player.money_income)
             print('crystal income:', player.crystal_income)
             if self.want_maintenance:
@@ -110,10 +119,12 @@ class Build_space_factory_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
             return
             
         who_buys.build_space_factory(where_to_buy)
@@ -146,14 +157,19 @@ class Buy_star_destroyer_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         who_buys.buy_star_destroyer(where_to_buy)
@@ -186,14 +202,19 @@ class Buy_fighter_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         who_buys.buy_fighter(where_to_buy)
@@ -226,14 +247,18 @@ class Buy_transport_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             

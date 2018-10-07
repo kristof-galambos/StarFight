@@ -20,6 +20,7 @@ class Gameboard():
         for i in range(len(player_names)):
             self.players.append(Player(player_names[i], player_colours[i], self))
         self.buttons = []
+        self.messages = ['Game started!', 'brief output info will appear here', 'more details will be printed to the console']
 
         self.attacker = None
         self.defender = None
@@ -227,6 +228,7 @@ class Gameboard():
         
         #define colours
         BLACK = (0, 0, 0)
+        GREEN = (0, 255, 0)
         
         #create background object and buttons
         background = Background(self.background_image, [0, 0])
@@ -244,10 +246,23 @@ class Gameboard():
             self.event_handling()
             
             #GAME LOGIC
-                
+            
+            #functions for displaying text on the pygame window
+            def text_objects(text, font):
+                textSurface = font.render(text, True, GREEN)
+                return textSurface, textSurface.get_rect()
+            def message_display(text, lineNumber):
+                largeText = pygame.font.Font('freesansbold.ttf', 12)
+                TextSurf, TextRect = text_objects(text, largeText)
+                TextRect.center = (1200, 300 + i*15)
+                self.screen.blit(TextSurf, TextRect)
+                            
             #GRAPHICS
             self.screen.fill(BLACK)
             self.screen.blit(background.image, background.rect)
+            
+            for i, msg in enumerate(self.messages):
+                message_display(msg, i)
                 
             self.all_sprites_list1.draw(self.screen)
             self.all_ship_sprites.draw(self.screen)

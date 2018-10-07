@@ -60,9 +60,11 @@ class Ship(pygame.sprite.Sprite):
 #        height = 100 #self.image_height
         if self.selected:
             self.selected = False
+            self.owner.master.messages = []
             self.image = pygame.image.load(self.image_filename).convert_alpha()
         else:
             self.selected = True
+            self.owner.master.messages = ['use the up, down, left and right arrow keys to move your ship']
             try:
                 self.image = pygame.image.load(self.image_filename[:-4]+'_selected.jpg').convert_alpha()
             except:

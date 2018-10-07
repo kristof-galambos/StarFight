@@ -35,6 +35,7 @@ class Planet(pygame.sprite.Sprite):
 #        height = 100 #self.image_height
         if self.selected:
             self.selected = False
+            self.owner.master.messages = []
             try:
                 self.image = pygame.image.load(self.image_filename).convert_alpha()
             except:
@@ -42,6 +43,7 @@ class Planet(pygame.sprite.Sprite):
         else:
             if self.PRINT_WHEN_CLICKED:
                 print('selected planet: '+self.name+' ('+str(self.money_income)+') owned by '+self.owner.name)
+                self.owner.master.messages = ['selected planet: '+self.name+' ('+str(self.money_income)+') owned by '+self.owner.name]
             self.selected = True
             try:
                 self.image = pygame.image.load(self.image_filename[:-4]+'_selected.jpg').convert_alpha()
