@@ -58,7 +58,18 @@ class New_round_button(My_button):
             if self.want_maintenance:
                 player.subtract_maintenance()
             print('\n'+player.name)
-            self.master.messages.append(player.name)
+            
+            playerColour = '???'
+            if player.colour == (255, 0, 0):
+                playerColour = 'red'
+            elif player.colour == (0, 0, 255):
+                playerColour = 'blue'
+            elif player.colour == (255, 255, 0):
+                playerColour = 'yellow'
+            elif player.colour == (255, 0, 255):
+                playerColour = 'purple'
+            
+            self.master.messages.append(player.name + ' (' + playerColour + ')')
             print('money:', player.money)
             print('crystals:', player.crystals)
             self.master.messages.append('money: ' + str(player.money) + ', crystals: ' + str(player.crystals))

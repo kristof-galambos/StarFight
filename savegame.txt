@@ -5,15 +5,15 @@ player: Kris
 money: 620
 crystals: 51
 
-player: And
+player: Joe
 money: 1560
 crystals: 57
 
-player: Esz
+player: Apple
 money: 2220
 crystals: 57
 
-player: No
+player: Dog
 money: 15380
 crystals: 63
 
@@ -24,7 +24,7 @@ planet: Atlantis 8+
 p_owner_name: Kris
 space_factory: False
 
-planet: Andromeda
+planet: Joeromeda
 p_owner_name: Kris
 space_factory: True
 
@@ -37,51 +37,51 @@ p_owner_name: Kris
 space_factory: False
 
 planet: Mars
-p_owner_name: And
+p_owner_name: Joe
 space_factory: True
 
 planet: Earth
-p_owner_name: And
+p_owner_name: Joe
 space_factory: False
 
 planet: Europa
-p_owner_name: And
+p_owner_name: Joe
 space_factory: False
 
 planet: Coruscant
-p_owner_name: Esz
+p_owner_name: Apple
 space_factory: False
 
 planet: Bobotov Kuk
-p_owner_name: Esz
+p_owner_name: Apple
 space_factory: False
 
 planet: Blurr Krat 2
-p_owner_name: Esz
+p_owner_name: Apple
 space_factory: True
 
 planet: Razvrsje
-p_owner_name: Esz
+p_owner_name: Apple
 space_factory: False
 
 planet: Arcus Tendinis
-p_owner_name: Esz
+p_owner_name: Apple
 space_factory: False
 
 planet: Wadoh
-p_owner_name: No
+p_owner_name: Dog
 space_factory: False
 
 planet: Alpha Centauri
-p_owner_name: No
+p_owner_name: Dog
 space_factory: False
 
 planet: Cepheus Hydra
-p_owner_name: No
+p_owner_name: Dog
 space_factory: True
 
 planet: Draco Major
-p_owner_name: No
+p_owner_name: Dog
 space_factory: False
 
 
@@ -108,86 +108,86 @@ position: 6 5
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: And
+s_owner_name: Joe
 position: 1 4
 already_travelled: True
 
 ship: fighter
-s_owner_name: And
+s_owner_name: Joe
 position: 5 3
 already_travelled: True
 
 ship: fighter
-s_owner_name: And
+s_owner_name: Joe
 position: 4 4
 already_travelled: True
 
 ship: fighter
-s_owner_name: And
+s_owner_name: Joe
 position: 5 4
 already_travelled: True
 
 ship: fighter
-s_owner_name: And
+s_owner_name: Joe
 position: 7 0
 already_travelled: True
 
 ship: fighter
-s_owner_name: And
+s_owner_name: Joe
 position: 3 3
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: Esz
+s_owner_name: Apple
 position: 11 7
 already_travelled: True
 
 ship: fighter
-s_owner_name: Esz
+s_owner_name: Apple
 position: 9 3
 already_travelled: True
 
 ship: fighter
-s_owner_name: Esz
+s_owner_name: Apple
 position: 8 8
 already_travelled: True
 
 ship: transport
-s_owner_name: Esz
+s_owner_name: Apple
 position: 8 7
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: Esz
+s_owner_name: Apple
 position: 9 3
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: No
+s_owner_name: Dog
 position: 13 2
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: No
+s_owner_name: Dog
 position: 12 2
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: No
+s_owner_name: Dog
 position: 11 2
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: No
+s_owner_name: Dog
 position: 11 3
 already_travelled: True
 
 ship: star destroyer
-s_owner_name: No
+s_owner_name: Dog
 position: 7 2
 already_travelled: True
 
 ship: transport
-s_owner_name: No
+s_owner_name: Dog
 position: 9 1
 already_travelled: True

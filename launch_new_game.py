@@ -1,4 +1,4 @@
-"""running this file starts a game of StarFight"""
+"""running this file starts a new game of StarFight"""
 
 #first check whether pygame is installed, and if not, it gets installed
 #DELETE THIS PART if you don't want to waste time and you have pygame installed

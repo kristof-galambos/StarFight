@@ -20,7 +20,7 @@ class Gameboard():
         for i in range(len(player_names)):
             self.players.append(Player(player_names[i], player_colours[i], self))
         self.buttons = []
-        self.messages = ['Game started!', 'brief output info will appear here', 'more details will be printed to the console']
+        self.messages = ['Game started!', 'Hit the NEW ROUND BUTTON to get started!', 'brief output info will appear here', 'more details will be printed to the console']
 
         self.attacker = None
         self.defender = None
