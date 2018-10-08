@@ -325,7 +325,7 @@ class Music_button(My_button):
             pygame.mixer.music.set_volume(0.2)
             print('starting music...')
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
-        time.sleep(0.1)
+        time.sleep(0.3)
 
      
                 
