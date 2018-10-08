@@ -3,6 +3,8 @@ from ship import Star_destroyer, Fighter, Transport
 import gameboard as g
 
 import pygame
+import numpy.random as npr
+import time
 
 
 class My_button(pygame.sprite.Sprite):
@@ -38,21 +40,41 @@ class New_round_button(My_button):
         
         
     def command(self):
+        self.master.messages = ['NEW ROUND!']
         print('\nNEW ROUND!')
         self.calculate_prices()
         print('\nPRICES:')
+        self.master.messages.append('PRICES: ')
         print('STAR DESTROYER:', self.price_star_destroyer)
+        self.master.messages.append('STAR DESTROYER: ' + str(self.price_star_destroyer))
         print('FIGHTER:', self.price_fighter)
+        self.master.messages.append('FIGHTER: ' + str(self.price_fighter))
         print('TRANSPORT:', self.price_transport)
-        print('SPACE FACTORY:', self.SPACE_FACTORY_PRICE[0], 'money,', self.SPACE_FACTORY_PRICE[1], 'crystals')
+        self.master.messages.append('TRANSPORT: ' + str(self.price_transport))
+        print('SPACE FACTORY:', self.SPACE_FACTORY_PRICE[0], 'money, ', self.SPACE_FACTORY_PRICE[1], 'crystals')
+        self.master.messages.append('SPACE FACTORY: ' + str(self.SPACE_FACTORY_PRICE[0]) + 'money,' + str(self.SPACE_FACTORY_PRICE[1]) + 'crystals')
+        self.master.messages.append('PLAYERS:')
         for player in self.master.players:
             player.update_total_income()
             player.add_total_income()
             if self.want_maintenance:
                 player.subtract_maintenance()
             print('\n'+player.name)
+            
+            playerColour = '???'
+            if player.colour == (255, 0, 0):
+                playerColour = 'red'
+            elif player.colour == (0, 0, 255):
+                playerColour = 'blue'
+            elif player.colour == (255, 255, 0):
+                playerColour = 'yellow'
+            elif player.colour == (255, 0, 255):
+                playerColour = 'purple'
+            
+            self.master.messages.append(player.name + ' (' + playerColour + ')')
             print('money:', player.money)
             print('crystals:', player.crystals)
+            self.master.messages.append('money: ' + str(player.money) + ', crystals: ' + str(player.crystals))
             print('money income:', player.money_income)
             print('crystal income:', player.crystal_income)
             if self.want_maintenance:
@@ -110,10 +132,12 @@ class Build_space_factory_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
             return
             
         who_buys.build_space_factory(where_to_buy)
@@ -146,14 +170,19 @@ class Buy_star_destroyer_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         who_buys.buy_star_destroyer(where_to_buy)
@@ -186,14 +215,19 @@ class Buy_fighter_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         who_buys.buy_fighter(where_to_buy)
@@ -226,20 +260,74 @@ class Buy_transport_button(My_button):
                         who_buys = player
         if many_planets_selected:
             print('\nMany planets selected! Please press this button again with only one planet selected!')
+            self.master.messages = ['Many planets selected! Please press this button again with only one planet selected!']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
         if where_to_buy == None:
             print('\nNo planets selected! Please press this button again with one planet selected!')
+            self.master.messages = ['No planets selected! Please press this button again with one planet selected!']
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
         who_buys.buy_transport(where_to_buy)
         where_to_buy.click()
                 
+        
+        
+        
+class Show_money_button(My_button):
+    def __init__(self, master, ID, position, image_filename):
+        My_button.__init__(self, master, ID, position, image_filename)
+        
+    def command(self):
+        self.master.messages = ['MONEY INFO:']
+        for player in self.master.players:
+
+            playerColour = '???'
+            if player.colour == (255, 0, 0):
+                playerColour = 'red'
+            elif player.colour == (0, 0, 255):
+                playerColour = 'blue'
+            elif player.colour == (255, 255, 0):
+                playerColour = 'yellow'
+            elif player.colour == (255, 0, 255):
+                playerColour = 'purple'
+            
+            self.master.messages.append(player.name + ' (' + playerColour + ')')
+            self.master.messages.append('money: ' + str(player.money) + ', (+' + str(player.money_income) + ' per round, excl. ship maint.)')
+            self.master.messages.append('crystals: ' + str(player.crystals) + ', (+' + str(player.crystal_income) + ' per round)')
+            
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
+
+
+
+
+class Music_button(My_button):
+    def __init__(self, master, ID, position, image_filename):
+        My_button.__init__(self, master, ID, position, image_filename)
+        
+    def command(self):
+        #turn music on/off
+        if self.master.want_music:
+            self.master.want_music = False
+            pygame.mixer.music.stop()
+            print('stopping music...')
+        else:
+            self.master.want_music = True
+            pygame.mixer.music.load(self.master.songs[npr.randint(len(self.master.songs))])
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(0.2)
+            print('starting music...')
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
+        time.sleep(0.1)
+
+     
                 
                 
 
@@ -266,7 +354,7 @@ class Save_and_quit_button(My_button):
             for ship in player.ships:
                 f.write('\n\nship: '+ship.ship_type)
                 f.write('\ns_owner_name: '+ship.owner.name)
-                f.write('\nposition: '+str(ship.position[0]/self.master.TILE_SIZE)+' '+str(ship.position[1]/self.master.TILE_SIZE))
+                f.write('\nposition: '+str(int(ship.position[0]/self.master.TILE_SIZE))+' '+str(int(ship.position[1]/self.master.TILE_SIZE)))
                 f.write('\nalready_travelled: '+str(ship.already_travelled))
         f.close()
         
