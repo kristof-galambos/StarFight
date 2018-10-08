@@ -73,6 +73,7 @@ class Player():
             else:
                 print('\n', self.name, 'has insufficient funds to build a space factory on '+planet.name+'!')
                 self.master.messages = [self.name + ' has insufficient funds', 'to build a space factory on '+planet.name+'!']
+                self.master.messages.extend(('PRICE: money:'+str(self.master.buttons[0].SPACE_FACTORY_PRICE[0])+', crystals:'+str(self.master.buttons[0].SPACE_FACTORY_PRICE[1]), 'YOU HAVE: money:'+str(self.money)+', crystals:'+str(self.crystals)))
                 pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
         else:
             print('\n'+self.name, ' already has a space factory on', planet.name+'!')
@@ -92,6 +93,7 @@ class Player():
         else:
             print('\n', self.name, 'has insufficient funds to buy a star destroyer on '+planet.name+'!')
             self.master.messages = [self.name + ' has insufficient funds', 'to buy a star destroyer on '+planet.name+'!']
+            self.master.messages.extend(('PRICE: money:'+str(self.master.buttons[0].price_star_destroyer)+', crystals:0', 'YOU HAVE: money:'+str(self.money)+', crystals:'+str(self.crystals)))
             pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
 
@@ -107,6 +109,7 @@ class Player():
         else:
             print('\n', self.name, 'has insufficient funds to buy a fighter on '+planet.name+'!')
             self.master.messages = [self.name + ' has insufficient funds', 'to buy a fighter on '+planet.name+'!']
+            self.master.messages.extend(('PRICE: money:'+str(self.master.buttons[0].price_fighter)+', crystals:0', 'YOU HAVE: money:'+str(self.money)+', crystals:'+str(self.crystals)))
             pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
         
@@ -122,6 +125,7 @@ class Player():
         else:
             print('\n', self.name, 'has insufficient funds to buy a transport on '+planet.name+'!')
             self.master.messages = [self.name + ' has insufficient funds', 'to buy a transport on '+planet.name+'!']
+            self.master.messages.extend(('PRICE: money:'+str(self.master.buttons[0].price_transport)+', crystals:0', 'YOU HAVE: money:'+str(self.money)+', crystals:'+str(self.crystals)))
             pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
             

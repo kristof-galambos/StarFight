@@ -4,6 +4,7 @@ import gameboard as g
 
 import pygame
 import numpy.random as npr
+import time
 
 
 class My_button(pygame.sprite.Sprite):
@@ -180,7 +181,7 @@ class Buy_star_destroyer_button(My_button):
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
-            self.master.messages = ['You need to build a space factory first!']
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
@@ -225,7 +226,7 @@ class Buy_fighter_button(My_button):
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
-            self.master.messages = ['You need to build a space factory first!']
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
@@ -270,7 +271,7 @@ class Buy_transport_button(My_button):
             
         if not where_to_buy.has_space_factory:
             print('\nYou need to build a space factory first!')
-            self.master.messages = ['You need to build a space factory first!']
+            self.master.messages = ['You need to build a space factory first!', 'a green thing in the bottom right corner of', 'a planet shows the presence of a space factory', 'you can build ships on those planets', 'or build a space factory here']
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             return
             
@@ -316,13 +317,15 @@ class Music_button(My_button):
         if self.master.want_music:
             self.master.want_music = False
             pygame.mixer.music.stop()
+            print('stopping music...')
         else:
             self.master.want_music = True
             pygame.mixer.music.load(self.master.songs[npr.randint(len(self.master.songs))])
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(0.2)
-            
+            print('starting music...')
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
+        time.sleep(0.1)
 
      
                 

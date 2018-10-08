@@ -68,7 +68,7 @@ class Ship(pygame.sprite.Sprite):
             self.image = pygame.image.load(self.image_filename).convert_alpha()
         else:
             self.selected = True
-            self.owner.master.messages = ['use the up, down, left and right arrow keys', 'to move your ship']
+            self.owner.master.messages = ['use the up, down, left and right arrow keys', 'to move your ship', 'or click again to deselect']
             try:
                 self.image = pygame.image.load(self.image_filename[:-4]+'_selected.jpg').convert_alpha()
             except:

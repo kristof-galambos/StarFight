@@ -47,7 +47,9 @@ class Planet(pygame.sprite.Sprite):
         else:
             if self.PRINT_WHEN_CLICKED:
                 print('selected planet: '+self.name+' ('+str(self.money_income)+') owned by '+self.owner.name)
-                self.owner.master.messages = ['selected planet: '+self.name+' ('+str(self.money_income)+') owned by '+self.owner.name]
+                self.owner.master.messages = ['selected planet: '+self.name+' (producing '+str(self.money_income)+' money', 'per round) owned by '+self.owner.name]
+                if self.has_space_factory:
+                    self.owner.master.messages.append('Has a space factory! You can build ships here')
             self.selected = True
             try:
                 self.image = pygame.image.load(self.image_filename[:-4]+'_selected.jpg').convert_alpha()
