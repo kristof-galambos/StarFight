@@ -2,15 +2,15 @@ Number of players: 4
 Maintenance: True
 
 player: Kris
-money: -980
+money: 3780
 crystals: 51
 
 player: Joe
-money: 1260
+money: 5260
 crystals: 59
 
 player: Apple
-money: 4570
+money: 25700
 crystals: 59
 
 player: Dog
@@ -30,7 +30,7 @@ space_factory: False
 
 planet: Centaur 624
 p_owner_name: Kris
-space_factory: False
+space_factory: True
 
 planet: Mars
 p_owner_name: Joe
@@ -49,7 +49,7 @@ p_owner_name: Apple
 space_factory: False
 
 planet: Coruscant
-p_owner_name: Apple
+p_owner_name: Kris
 space_factory: False
 
 planet: Bobotov Kuk
@@ -65,11 +65,11 @@ p_owner_name: Apple
 space_factory: False
 
 planet: Arcus Tendinis
-p_owner_name: Apple
+p_owner_name: Dog
 space_factory: False
 
 planet: Wadoh
-p_owner_name: Dog
+p_owner_name: Apple
 space_factory: False
 
 planet: Alpha Centauri
