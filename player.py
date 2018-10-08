@@ -67,13 +67,17 @@ class Player():
             if success:
                 planet.has_space_factory = True
                 print('\n', self.name, 'has built a space factory on '+planet.name+'!')
+                self.master.messages = [self.name + ' has built a', 'space factory on '+planet.name+'!']
                 print('remaining:', '\nmoney:', self.money, '\ncrystals:', self.crystals)
+                self.master.messages.append('remaining: money:' + self.money + ',crystals:' + self.crystals)
             else:
                 print('\n', self.name, 'has insufficient funds to build a space factory on '+planet.name+'!')
-                pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
+                self.master.messages = [self.name + ' has insufficient funds', 'to build a space factory on '+planet.name+'!']
+                pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
         else:
-            print('\n'+self.name, 'already has a space factory on', planet.name+'!')
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
+            print('\n'+self.name, ' already has a space factory on', planet.name+'!')
+            self.master.messages = [self.name + 'already has a', 'space factory on '+planet.name+'!']
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
             
     def buy_star_destroyer(self, planet):
@@ -82,10 +86,13 @@ class Player():
             new_ship = Star_destroyer([planet.position[0], planet.position[1]], self)
             self.master.add_ship_to_player(new_ship, self)
             print('\n', self.name, 'has bought a star destroyer on '+planet.name+'!')
+            self.master.messages = [self.name + ' has bought a', 'star destroyer on '+planet.name+'!']
             print('remaining:' '\nmoney:', self.money, '\ncrystals:', self.crystals)
+            self.master.messages.append('remaining: money:' + str(self.money) + ',crystals:' + str(self.crystals))
         else:
             print('\n', self.name, 'has insufficient funds to buy a star destroyer on '+planet.name+'!')
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
+            self.master.messages = [self.name + ' has insufficient funds', 'to buy a star destroyer on '+planet.name+'!']
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
 
     def buy_fighter(self, planet):
@@ -94,10 +101,13 @@ class Player():
             new_ship = Fighter([planet.position[0], planet.position[1]], self)
             self.master.add_ship_to_player(new_ship, self)
             print('\n', self.name, 'has bought a fighter on '+planet.name+'!')
+            self.master.messages = [self.name + ' has bought a', 'fighter on '+planet.name+'!']
             print('remaining:' '\nmoney:', self.money, '\ncrystals:', self.crystals)
+            self.master.messages.append('remaining: money:' + str(self.money) + ',crystals:' + str(self.crystals))
         else:
             print('\n', self.name, 'has insufficient funds to buy a fighter on '+planet.name+'!')
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
+            self.master.messages = [self.name + ' has insufficient funds', 'to buy a fighter on '+planet.name+'!']
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
         
     def buy_transport(self, planet):
@@ -106,10 +116,13 @@ class Player():
             new_ship = Transport([planet.position[0], planet.position[1]], self)
             self.master.add_ship_to_player(new_ship, self)
             print('\n', self.name, 'has bought a transport on '+planet.name+'!')
+            self.master.messages = [self.name + ' has bought a', 'transport on '+planet.name+'!']
             print('remaining:' '\nmoney:', self.money, '\ncrystals:', self.crystals)
+            self.master.messages.append('remaining: money:' + str(self.money) + ',crystals:' + str(self.crystals))
         else:
             print('\n', self.name, 'has insufficient funds to buy a transport on '+planet.name+'!')
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
+            self.master.messages = [self.name + ' has insufficient funds', 'to buy a transport on '+planet.name+'!']
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('sounds\\error.wav'))
     
             
     def decrease_funds(self, sub_money, sub_crystals):

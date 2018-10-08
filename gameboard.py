@@ -1,7 +1,7 @@
 
 from planet import Planet
 from player import Player
-from buttons import New_round_button, Build_space_factory_button, Buy_star_destroyer_button, Buy_fighter_button, Buy_transport_button, Save_and_quit_button, Load_game_button
+from buttons import New_round_button, Build_space_factory_button, Buy_star_destroyer_button, Buy_fighter_button, Buy_transport_button, Show_money_button, Music_button, Save_and_quit_button, Load_game_button
 
 import pygame
 import openpyxl
@@ -21,6 +21,7 @@ class Gameboard():
             self.players.append(Player(player_names[i], player_colours[i], self))
         self.buttons = []
         self.messages = ['Game started!', 'Hit the NEW ROUND BUTTON to get started!', 'brief output info will appear here', 'more details will be printed to the console']
+        self.messages_stay = False
 
         self.attacker = None
         self.defender = None
@@ -104,6 +105,7 @@ class Gameboard():
         if met_enemy != None:
 #            print '\nMet enemy!'
             print('\nBeginning battle!')
+            self.messages = ['Beginning battle!']
             
             same_type = False
             try:
@@ -120,11 +122,13 @@ class Gameboard():
                 if attackSuccessful:
                     met_enemy.owner.ships.remove(met_enemy)
                     print('\nAttacker won! Defender ship destroyed.')
+                    self.messages.append('Attacker won! Defender ship destroyed.')
                     met_enemy.kill()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
                 else:
                     ship.owner.ships.remove(ship)
                     print('\nDefender won! Attacker ship destroyed.')
+                    self.messages.append('Defender won! Attacker ship destroyed.')
                     ship.kill()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
             else:
@@ -133,22 +137,26 @@ class Gameboard():
                     met_enemy.owner.planets.remove(met_enemy)
                     met_enemy.owner = ship.owner
                     met_enemy.set_owner_colour()
-                    print('\nAttacking ship captured planet!')    
+                    print('\nAttacking ship captured planet!')
+                    self.messages.append('Attacking ship captured planet!')
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\captured.wav'))              
                 elif ship.ship_type == 'star destroyer':
                     met_enemy.owner.ships.remove(met_enemy) #destroy enemy ship
                     print('\nThe attacking star destroyer destroyed the defending ship!')
+                    self.messages.extend(('The attacking star destroyer destroyed', 'the defending ship!'))
                     met_enemy.kill()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
                 elif ship.ship_type == 'fighter':
                     if met_enemy.ship_type == 'transport':
                         met_enemy.owner.ships.remove(met_enemy)
                         print('\nThe attacking fighter destroyed the defending transport!')
+                        self.messages.extend(('The attacking fighter destroyed', 'the defending transport!'))
                         met_enemy.kill()
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
                     elif met_enemy.ship_type == 'star destroyer':
                         ship.owner.ships.remove(ship)
                         print('\nThe defending star destroyer destroyed the attacking fighter!')
+                        self.messages.extend(('The defending star destroyer destroyed', 'the attacking fighter!'))
                         ship.kill()
                         pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
                     else:
@@ -156,6 +164,7 @@ class Gameboard():
                 elif ship.ship_type == 'transport':
                     ship.owner.ships.remove(ship)
                     print('\nThe defending ship destroyed the attacking transport!')
+                    self.messages.extend(('The defending ship destroyed', 'the attacking transport!'))
                     ship.kill()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\explosion.wav'))
                 else:
@@ -199,19 +208,26 @@ class Gameboard():
             buy_star_destroyer_button = Buy_star_destroyer_button(self, 3, [1130, 110], 'images\\buy_star_destroyer_button_final.jpg')
             buy_fighter_button = Buy_fighter_button(self, 4, [1130, 160], 'images\\buy_fighter_button_final.jpg')
             buy_transport_button = Buy_transport_button(self, 5, [1130, 210], 'images\\buy_transport_button_final.jpg')
+            show_money_button = Show_money_button(self, 6, [1220, 540], 'images\\show_money_button_final.jpg')
+            music_button = Music_button(self, 6, [1130, 540], 'images\\music_button_final.jpg')
         else:
             new_round_button = New_round_button(self, 1, [1130, 10], 'images\\new_round_button_full.jpg')
             build_space_factory_button = Build_space_factory_button(self, 2, [1130, 60], 'images\\build_space_factory_button_full.jpg')
             buy_star_destroyer_button = Buy_star_destroyer_button(self, 3, [1130, 110], 'images\\buy_star_destroyer_button_full.jpg')
             buy_fighter_button = Buy_fighter_button(self, 4, [1130, 160], 'images\\buy_fighter_button_full.jpg')
             buy_transport_button = Buy_transport_button(self, 5, [1130, 210], 'images\\buy_transport_button_full.jpg')
-        save_and_quit_button = Save_and_quit_button(self, 6, [1130, 600], 'images\\save_and_quit_button_final.jpg')
-        load_game_button = Load_game_button(self, 7, [1130, 650], 'images\\load_game_button_final.jpg')
+            show_money_button = Show_money_button(self, 6, [1220, 540], 'images\\show_money_button_final.jpg')
+            music_button = Music_button(self, 6, [1130, 540], 'images\\music_button_final.jpg')
+        
+        save_and_quit_button = Save_and_quit_button(self, 8, [1130, 600], 'images\\save_and_quit_button_final.jpg')
+        load_game_button = Load_game_button(self, 9, [1130, 650], 'images\\load_game_button_final.jpg')
         self.buttons.append(new_round_button) #WARNING! HAS TO BE THE FIRST BUTTON!
         self.buttons.append(build_space_factory_button)
         self.buttons.append(buy_star_destroyer_button)
         self.buttons.append(buy_fighter_button)
         self.buttons.append(buy_transport_button)
+        self.buttons.append(show_money_button)
+        self.buttons.append(music_button)
         self.buttons.append(save_and_quit_button)
         self.buttons.append(load_game_button) #WARNING! HAS TO BE THE LAST BUTTON!
         
@@ -313,6 +329,7 @@ class Gameboard():
                                     self.ship_moved_check_collisions(ship)
                                 else:
                                     print('\nThe selected ship has already travelled in this round!')
+                                    self.messages = ['The selected ship has already travelled in this round!', 'click ship again to deselect']
                                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
                 if event.key==pygame.K_RIGHT:
                     for player in self.players:
@@ -323,6 +340,7 @@ class Gameboard():
                                     self.ship_moved_check_collisions(ship)
                                 else:
                                     print('\nThe selected ship has already travelled in this round!')
+                                    self.messages = ['The selected ship has already travelled in this round!', 'click ship again to deselect']
                                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
                 if event.key==pygame.K_UP:
                     for player in self.players:
@@ -333,6 +351,7 @@ class Gameboard():
                                     self.ship_moved_check_collisions(ship)
                                 else:
                                     print('\nThe selected ship has already travelled in this round!')
+                                    self.messages = ['The selected ship has already travelled in this round!', 'click ship again to deselect']
                                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
                 if event.key==pygame.K_DOWN:
                     for player in self.players:
@@ -343,12 +362,16 @@ class Gameboard():
                                     self.ship_moved_check_collisions(ship)
                                 else:
                                     print('\nThe selected ship has already travelled in this round!')
+                                    self.messages = ['The selected ship has already travelled in this round!', 'click ship again to deselect']
                                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\error.wav'))
             if pygame.mouse.get_pressed()[0]:
                 mouse_pos = pygame.mouse.get_pos()
                 #check if the new round button has been clicked
                 for button in self.buttons:
-                    if button.position[0]<=mouse_pos[0] and mouse_pos[0]<=button.position[0]+140 and button.position[1]<=mouse_pos[1] and mouse_pos[1]<=button.position[1]+40:
+                    if isinstance(button, Music_button) or isinstance(button, Show_money_button):
+                        if button.position[0]<=mouse_pos[0] and mouse_pos[0]<=button.position[0]+70 and button.position[1]<=mouse_pos[1] and mouse_pos[1]<=button.position[1]+50:
+                            button.command()
+                    elif button.position[0]<=mouse_pos[0] and mouse_pos[0]<=button.position[0]+170 and button.position[1]<=mouse_pos[1] and mouse_pos[1]<=button.position[1]+40:
                         button.command()
                 #check if a planet or ship has been clicked
                 for player in self.players:

@@ -35,7 +35,11 @@ class Planet(pygame.sprite.Sprite):
 #        height = 100 #self.image_height
         if self.selected:
             self.selected = False
-            self.owner.master.messages = []
+            try:
+                if self.owner.master.messages[0][0:5] in ['selec']: #remove only specific messages
+                    self.owner.master.messages = []
+            except:
+                pass
             try:
                 self.image = pygame.image.load(self.image_filename).convert_alpha()
             except:

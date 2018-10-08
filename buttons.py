@@ -3,6 +3,7 @@ from ship import Star_destroyer, Fighter, Transport
 import gameboard as g
 
 import pygame
+import numpy.random as npr
 
 
 class My_button(pygame.sprite.Sprite):
@@ -276,6 +277,54 @@ class Buy_transport_button(My_button):
         who_buys.buy_transport(where_to_buy)
         where_to_buy.click()
                 
+        
+        
+        
+class Show_money_button(My_button):
+    def __init__(self, master, ID, position, image_filename):
+        My_button.__init__(self, master, ID, position, image_filename)
+        
+    def command(self):
+        self.master.messages = ['MONEY INFO:']
+        for player in self.master.players:
+
+            playerColour = '???'
+            if player.colour == (255, 0, 0):
+                playerColour = 'red'
+            elif player.colour == (0, 0, 255):
+                playerColour = 'blue'
+            elif player.colour == (255, 255, 0):
+                playerColour = 'yellow'
+            elif player.colour == (255, 0, 255):
+                playerColour = 'purple'
+            
+            self.master.messages.append(player.name + ' (' + playerColour + ')')
+            self.master.messages.append('money: ' + str(player.money) + ', (+' + str(player.money_income) + ' per round, excl. ship maint.)')
+            self.master.messages.append('crystals: ' + str(player.crystals) + ', (+' + str(player.crystal_income) + ' per round)')
+            
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
+
+
+
+
+class Music_button(My_button):
+    def __init__(self, master, ID, position, image_filename):
+        My_button.__init__(self, master, ID, position, image_filename)
+        
+    def command(self):
+        #turn music on/off
+        if self.master.want_music:
+            self.master.want_music = False
+            pygame.mixer.music.stop()
+        else:
+            self.master.want_music = True
+            pygame.mixer.music.load(self.master.songs[npr.randint(len(self.master.songs))])
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(0.2)
+            
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('sounds\\button_click.wav'))
+
+     
                 
                 
 
@@ -302,7 +351,7 @@ class Save_and_quit_button(My_button):
             for ship in player.ships:
                 f.write('\n\nship: '+ship.ship_type)
                 f.write('\ns_owner_name: '+ship.owner.name)
-                f.write('\nposition: '+str(ship.position[0]/self.master.TILE_SIZE)+' '+str(ship.position[1]/self.master.TILE_SIZE))
+                f.write('\nposition: '+str(int(ship.position[0]/self.master.TILE_SIZE))+' '+str(int(ship.position[1]/self.master.TILE_SIZE)))
                 f.write('\nalready_travelled: '+str(ship.already_travelled))
         f.close()
         

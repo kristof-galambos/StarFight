@@ -26,6 +26,12 @@ would it be better to add marketplace and special ship factory? it would make th
 
 THINGS TO DO:
 
+more output info
+grid appearing when ship selected
+music on/off button
+battle odds
+convert to exe
+
 add a self destruction key for ships
 
 bug: when hitting load game button for the second time in a row, execution stops. this is due to the fact that play.py only has an if statement for self.want_to_reload, not a while loop. this cannot be solved easily, as a want_to_reload variable that survives the death of the pygame window would be needed to be kept in the load game button, but event the load game button does not stay the same when it is hit, as when the load game button is hit, the new gameboard object is created and that creates a new load game button for itself
